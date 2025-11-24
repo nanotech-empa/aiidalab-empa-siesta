@@ -1,0 +1,29 @@
+submitted_protocol:
+  description: automatically generated
+  parameters:
+    electronic-temperature: 25 meV
+    max-scf-iterations: '55'
+    mesh-cutoff: 200 Ry
+    scf-dm-tolerance: '0.0001'
+    scf-mixer-history: '5'
+    scf-mixer-weight: '0.1'
+    solution-method: diagon
+    write-forces: 'True'
+    xc-authors: PBE
+    xc-functional: GGA
+  spin_additions:
+    write-mulliken-pop: '1'
+  relax_additions:
+    md-max-force-tol: 0.04 eV/ang
+    md-max-stress-tol: 0.1 GPa
+    scf-dm-tolerance: '0.0001'
+  basis:
+    pao-basis-size: DZP
+    pao-energy-shift: 50 meV
+  pseudo_family: psf_family
+  kpoints:
+    distance: '0.1'
+    offset:
+    - 0.0
+    - 0.0
+    - 0.0
