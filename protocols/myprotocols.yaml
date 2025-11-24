@@ -2,7 +2,7 @@ submitted_protocol:
   description: automatically generated
   parameters:
     electronic-temperature: 25 meV
-    max-scf-iterations: '55'
+    max-scf-iterations: '50'
     mesh-cutoff: 200 Ry
     scf-dm-tolerance: '0.0001'
     scf-mixer-history: '5'
@@ -14,9 +14,13 @@ submitted_protocol:
   spin_additions:
     write-mulliken-pop: '1'
   relax_additions:
+    md-max-cg-displ: 0.120 Ang
     md-max-force-tol: 0.04 eV/ang
     md-max-stress-tol: 0.1 GPa
+    md-num-cg-steps: '100'
+    md-ype-of-run: CG
     scf-dm-tolerance: '0.0001'
+    write-md-xmol: .true.
   basis:
     pao-basis-size: DZP
     pao-energy-shift: 50 meV
