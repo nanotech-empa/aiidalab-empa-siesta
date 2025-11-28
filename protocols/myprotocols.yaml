@@ -11,26 +11,17 @@ submitted_protocol:
     write-forces: 'True'
     xc-authors: PBE
     xc-functional: GGA
-    BandsSave: 'true'
-    WriteBands: 'true'
-    BandLinesScale: ReciprocalLatticeVectors
-    '%block band-lines': "\n 0.0  0.0  0.0   30   \u0393\n 0.5  0.0  0.5   30   X\n\
-      \ 0.5  0.25 0.75  30   W\n 0.5  0.5  0.5   30   L\n 0.0  0.0  0.0   30   \u0393\
-      \n%endblock band-lines"
-    '%block local-density-of-states': '
-
-      -4.06 -3.66 eV
-
-      %endblock local-density-of-states'
-    '%block projected-density-of-states': '
-
-      -6.0 -1.5 0.05 350 eV
-
-      %endblock projected-density-of-states'
   spin_additions:
     write-mulliken-pop: '1'
   relax_additions:
+    md-max-cg-displ: 0.120 Ang
+    md-max-force-tol: 0.04 eV/ang
+    md-max-stress-tol: 0.1 GPa
+    md-num-cg-steps: '100'
+    md-use-save-xv: .true.
+    md-ype-of-run: CG
     scf-dm-tolerance: '0.0001'
+    write-md-xmol: .true.
   basis:
     pao-basis-size: DZP
     pao-energy-shift: 50 meV
