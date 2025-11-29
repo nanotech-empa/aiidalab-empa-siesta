@@ -132,19 +132,18 @@ class SearchStructuresWidget(ipw.VBox):
 
             # retrieve or generate thumbnail
             if "thumbnail" not in structure.extras:
-                thumb_bytes = utils.ase_to_thumbnail(structure=structure.get_ase())
-                thumb_b64 = base64.b64encode(thumb_bytes).decode()
+                # ase_to_thumbnail already returns a base64 string
+                thumb_b64 = utils.ase_to_thumbnail(structure.get_ase())
                 structure.base.extras.set("thumbnail", thumb_b64)
             else:
                 thumb = structure.extras["thumbnail"]
-                if isinstance(thumb, bytes):
-                    thumb_b64 = base64.b64encode(thumb).decode()
-                elif isinstance(thumb, str):
-                    thumb_b64 = thumb
-                else:
-                    thumb_bytes = utils.ase_to_thumbnail(structure=structure.get_ase())
-                    thumb_b64 = base64.b64encode(thumb_bytes).decode()
+                # thumb already base64 string OR weird edge case
+                if not isinstance(thumb, str):
+                    thumb_b64 = utils.ase_to_thumbnail(structure.get_ase())
                     structure.base.extras.set("thumbnail", thumb_b64)
+                else:
+                    thumb_b64 = thumb
+
 
             # clickable thumbnail
             image_html = (
