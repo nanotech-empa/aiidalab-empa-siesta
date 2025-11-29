@@ -69,7 +69,16 @@ class SearchStructuresWidget(ipw.VBox):
 
         qb = QueryBuilder()
         qb.append(WorkChainNode, filters=filters, project=["*"])
-        return [wc[0] for wc in qb.all()]
+        workchains = [wc[0] for wc in qb.all()]
+
+        # Filter out obsolete nodes
+        clean_wcs = [
+            wc for wc in workchains
+            if not ("obsolete" in wc.extras and wc.extras["obsolete"])
+        ]
+
+        return clean_wcs
+
 
     # ------------------------------------------------------------------
     # Thumbnail and table builder

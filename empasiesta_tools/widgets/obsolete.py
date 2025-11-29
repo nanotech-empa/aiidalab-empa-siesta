@@ -23,4 +23,4 @@ class ObsoleteWidget(ipw.VBox):
         self.node.set_extra("obsolete", True)
         with self.output:
             clear_output()
-            print("Node {self.node.pk} will not be listed in search")
+            print(f"Node {self.node.pk} will not be listed in search")
