@@ -11,16 +11,6 @@ submitted_protocol:
     write-forces: 'True'
     xc-authors: PBE
     xc-functional: GGA
-    '%block local-density-of-states': '
-
-      -4.06 -3.66 eV
-
-      %endblock local-density-of-states'
-    '%block projected-density-of-states': '
-
-      -6.0 -1.5 0.05 350 eV
-
-      %endblock projected-density-of-states'
   spin_additions:
     write-mulliken-pop: '1'
   relax_additions:
