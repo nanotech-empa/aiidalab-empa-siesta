@@ -3,18 +3,24 @@ standard:
   parameters:
     xc-functional: "GGA"
     xc-authors: "PBE"
-    max-scf-iterations: 50
-    scf-mixer-history: 5
+    max-scf-iterations: 100
+    scf-mixer-history: 7
     scf-mixer-weight: 0.1
-    scf-dm-tolerance: 1.e-4  #1.e-5
+    scf-dm-tolerance: 0.00001
     solution-method: 'diagon'
     electronic-temperature: '25 meV'
     write-forces: True
-    mesh-cutoff: '200 Ry'
+    mesh-cutoff: '350 Ry'
   spin_additions:
-    write-mulliken-pop: 1
+    SpinPolarized: False
   relax_additions:
-    scf-dm-tolerance: 1.e-4
+    md-max-force-tol: 0.04 eV/ang 
+    md-max-stress-tol: 0.1 GPa
+    md-max-cg-displ: 0.120 Ang
+    md-num-cg-steps: '100'
+    md-type-of-run: CG
+    md-use-save-xv: .true.
+    write-md-xmol: .true.
   basis:
     pao-energy-shift: '50 meV'
     pao-basis-size: 'DZP'
@@ -70,3 +76,61 @@ standard:
     Hg:
       basis:
         pao-block: "Hg 4 \n  n=5   0   1 \n  3.568 \n n=6   0   2  \n 6.573  0.0 \n n=5   1   2 \n 4.059  0.0 \n n=5   2  1 \n 5.918"
+        
+        
+fast:
+  description: 'Quick calculation with lower precision for testing.'
+  parameters:
+    xc-functional: "GGA"
+    xc-authors: "PBE"
+    max-scf-iterations: 100
+    scf-mixer-history: 7
+    scf-dm-tolerance: 0.0001
+    mesh-cutoff: '200 Ry' 
+  spin_additions:
+    SpinPolarized: False
+  relax_additions:
+    md-max-force-tol: 0.07 eV/ang  
+    md-max-stress-tol: 0.5 GPa
+    md-max-cg-displ: 0.120 Ang
+    md-num-cg-steps: '100'
+    md-type-of-run: CG
+    md-use-save-xv: .true.
+    write-md-xmol: .true.
+  basis:
+    pao-energy-shift: '100 meV'
+    pao-basis-size: 'SZP'   
+  pseudo_family: 'psf_family'
+  kpoints:
+    distance: 0.5         
+    
+precise:
+  description: 'High-precision protocol for publication-quality results. Higher cutoff and tighter SCF convergence.'
+  parameters:
+    xc-functional: "GGA"
+    xc-authors: "PBE"
+    max-scf-iterations: 100    
+    scf-mixer-history: 7
+    scf-mixer-weight: 0.1
+    scf-dm-tolerance: 0.0000001    
+    solution-method: 'diagon'
+    electronic-temperature: '25 meV' 
+    write-forces: True
+    mesh-cutoff: '450 Ry'     
+  spin_additions:
+    SpinPolarized: False
+  relax_additions:
+    md-max-force-tol: 0.02 eV/ang
+    md-max-stress-tol: 0.05 GPa
+    md-max-cg-displ: 0.120 Ang
+    md-num-cg-steps: '100'
+    md-type-of-run: CG
+    md-use-save-xv: .true.
+    write-md-xmol: .true.
+  basis:
+    pao-energy-shift: '20 meV' 
+    pao-basis-size: 'DZP'      
+  pseudo_family: 'psf_family'
+  kpoints:
+    distance: 0.05            
+    offset: [0., 0., 0.]
